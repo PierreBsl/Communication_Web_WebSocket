@@ -8,7 +8,7 @@ function login(){
 
 function sendMessage(){
     let message = document.getElementById("inlineFormInputGroup").value;
-    websocket.send(login_Globale + " : " + message + '<br><br>');
+    websocket.send(login_Globale + " : " + message + '<br>');
     document.getElementById("inlineFormInputGroup").value = "";
 }
 function writeMessage(message){//Ecriture du message
@@ -22,7 +22,7 @@ function createWebsocket(){
     websocket = new WebSocket('ws://localhost:12345');
     websocket.onopen = function(event){
         console.log('connexion établie');
-        websocket.send(login_Globale + ' joined the tchat !'+'<br><br>');
+        websocket.send(login_Globale + ' joined the chat !'+'<br><br>');
     }
     websocket.onmessage = function(event){
         //appelle la fonction writemessage
@@ -30,8 +30,8 @@ function createWebsocket(){
         writeMessage(event.data);
     }
 
-
     websocket.onclose = function(){
+        alert(login_Globale + ' left the chat !')
         console.log('Communication terminée');
     }
     //EventListener qui qd on click send quelque chose au serveur
